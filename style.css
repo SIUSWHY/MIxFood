@@ -1,15 +1,25 @@
+<<<<<<< HEAD
 .all_page_layout{
     background-image: url(i/2.jpg);
+=======
+.all-page-layout{
+    background-image: url(pic/2.jpg);
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     font-family: 'Proxima', 'Arial', sans-serif;
     /* opacity: 0.5; */
     background-color: #1b3d3c25;
 
 }
+<<<<<<< HEAD
 .menu_and_shopping_basket_layout{
+=======
+.menu-and-shopping-basket-layout{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     float: left;
     margin-right: 25px;
 }
 
+<<<<<<< HEAD
 .shopping_basket_style{
     background-color: #fbbe18d7;
     width: 290px;
@@ -17,12 +27,25 @@
     border-radius: 10px;
 }
 .list_products{
+=======
+.shopping-basket-style{
+    background-color: #fbbe18d7;
+    width: 290px;
+    height: 300px;
+    border-radius: 10px;
+}
+.list-products{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     width: auto;
     height: 2000px;
     display: flex;
     border-radius: 10px;
 }
+<<<<<<< HEAD
 .list_menu{
+=======
+.list-menu{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     list-style-type: none;
     overflow: hidden;
     display: flex;
@@ -31,7 +54,11 @@
     text-align: center;
     width: 290px;
 }
+<<<<<<< HEAD
 .list_menu_2{
+=======
+.list-menu-2{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     font-weight: 600;
     font-size: 24px;
     display: inline-block;
@@ -45,9 +72,15 @@ palitra{
     color: #fbbe18;
     color: #e94a54;
     color: #e5194a;
+<<<<<<< HEAD
     /* color: #2025a; */
 }
 .menu_type{
+=======
+    color: #2025a;
+}
+.menu-type{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     border-radius: 10px;
     background-color: white;
 
@@ -58,30 +91,49 @@ palitra{
     color: #e94a54;
 
 }
+<<<<<<< HEAD
 .card_product{
+=======
+.card-product{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     text-align: center;
     width: 240px;
     height: auto;
     margin-top: 10px;
     height: 480px;
 }
+<<<<<<< HEAD
 .logo_market{
     align-items: center;
 }
 .product_icon_position{
+=======
+.logo-market{
+    align-items: center;
+}
+.product-icon-position{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     position: relative;
     display: inline-block;
     margin: 0 auto;
     vertical-align: top;
     z-index: 102;
 }
+<<<<<<< HEAD
 .product_icon{
+=======
+.product-icon{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     box-sizing: content-box;
     border: 10px solid #fbbe18;
     border-radius: 100%;
     background-color: #fff;
 }
+<<<<<<< HEAD
 .name_product{
+=======
+.name-product{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     align-items: center;
     font-weight: 600;
     font-size: 20px;
@@ -94,14 +146,25 @@ palitra{
     font-weight: 600;
     padding: 5px;
 }
+<<<<<<< HEAD
 .price_item{
+=======
+.price-item{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     margin-top: 10px;
     margin-bottom: 10px;
     color: #e5194a;
     font-weight: 600;
 
 }
+<<<<<<< HEAD
 .buy_basket{
+=======
+.quantity-product{
+
+}
+.buy-botton{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     background-color: #fbbe18;
     border-radius: 50px;
     font-size: 17px;
@@ -128,17 +191,28 @@ palitra{
     font-size: 20px;
     margin-left: 10px;
 }
+<<<<<<< HEAD
 .quantity_product{
+=======
+.quantity-product{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     border: none;
     border-radius: 5px;
     height: 25px;
     text-align: center;
     width: 80px;
 }
+<<<<<<< HEAD
 .cards_wrapper{
     display: flex;
 }
 .category_name{
+=======
+.cards-wrapper{
+    display: flex;
+}
+.category-name{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     display: flex;
     justify-content: space-between;
     height: 40px;
@@ -147,14 +221,22 @@ palitra{
     margin-left: 10px;
     margin-right: 10px;
 }
+<<<<<<< HEAD
 .category_name_style{
+=======
+.category-name-style{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     font-size: 16px;
     padding-left: 15px;
     padding-right: 15px;
     font-weight: 600;
     margin-top: 5px;
 }
+<<<<<<< HEAD
 .checkout_style{
+=======
+.checkout-style{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     background-color: #e5194a;
     color: white;
     border-radius: 5px;
@@ -163,13 +245,21 @@ palitra{
     font-weight: 600;
     padding: 5px;
 }
+<<<<<<< HEAD
 .order_price{
+=======
+.order-price{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     display: flex;
     justify-content: center;
     padding: 55px;
     font-weight: 600;
 }
+<<<<<<< HEAD
 .checkout_position{
+=======
+.checkout-position{
+>>>>>>> 5bc523c9e7b732ba5e1086a3e2a47ee9f8be4317
     display: flex;
     justify-content: center;
 }
