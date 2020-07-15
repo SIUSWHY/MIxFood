@@ -8,17 +8,18 @@
 .menu_and_shopping_basket_layout{
     float: left;
     margin-right: 25px;
+    display: flex;
+    flex-direction: column;
 }
-
 .shopping_basket_style{
     background-color: #fbbe18d7;
     width: 290px;
     /* height: 300px; */
     border-radius: 10px;
+    margin-top: 20px;
 }
 .list_products{
     width: auto;
-    height: 2000px;
     display: flex;
     border-radius: 10px;
 }
@@ -58,11 +59,16 @@ palitra{
     color: #e94a54;
 
 }
+.right_text_active{
+    background-color: #fbbe18;
+    border-radius: 10px 0px 0px 10px;
+    color: #e94a54;
+}
 .card_product{
     text-align: center;
     width: 240px;
     height: auto;
-    margin-top: 10px;
+    margin: 10px 10px 0px 10px;
     height: 480px;
 }
 .logo_market{
@@ -137,6 +143,7 @@ palitra{
 }
 .cards_wrapper{
     display: flex;
+    flex-wrap: wrap;
 }
 .category_name{
     display: flex;
@@ -178,7 +185,9 @@ palitra{
     height: 1000px;
     padding: 0px;
     border-radius: 10px;
-    /* background-color: aqua; */
+    background-color: aqua;
+    border-style: none;
+
 }
 .style_dialog_box{
     background-color: #fbbe18;
@@ -205,7 +214,23 @@ palitra{
     display: block;
     color: rgb(0, 0, 0);
     text-align: center;
-    padding: 20px 18px;
+    padding: 10px 25px;
     text-decoration: none;
     font-weight: 600;
+    font-size: 25px;
 }
+.style_dialog_text_menu{
+    background-color: white;
+    border-radius: 15px;
+    width: 700px;
+    
+}
+.justify_content_text_menu{
+    display: flex;  
+    justify-content: space-around;
+    margin: 15px;
+}
+.social-link {
+    margin-right: 30px;
+    color: #bbb;
+  }

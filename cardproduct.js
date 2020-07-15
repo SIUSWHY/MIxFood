@@ -1,52 +1,60 @@
+const defaultCategory = "sandwiches";
+
 const cards = data.menu;
 
-function renderCards() {
+function render(cards) {
+  document.querySelector('.cards_wrapper').innerHTML = '';
 
+  for (let i = 0; i < cards.length; i++) {
+    const new_card = document.createElement('div');
+
+    new_card.classList.add('card_product');
+    new_card.innerHTML = `  
+      <div class="card_product" id="item_box" style="height:500px;">
+        <div class="logo_market">
+          <img src="${data.markets[cards[i].market]?.image}" alt="picture">
+        </div>
+        <div class="product_icon_position" 
+          style="position: relative;
+          display: inline-block;
+          margin: 0 auto;
+          vertical-align: top;
+          z-index: 102;">
+          <img src="${cards[i].image}" alt="picture" 
+          style="box-sizing: content-box;
+          border: 10px solid #fbbe18;
+          border-radius: 100%;
+          background-color: #fff;" >
+        </div>
+        <div class="name_product" id="name_product">${cards[i].name}</div>
+        <div class="ingridients" style="height:50px;">${cards[i].description}
+        </div>
+        <div class="price_item">Цена: ${cards[i].price} руб</div>
+  
+        <!-- Количество товара -->
+        <div class="input_group quantity_goods">
+            <input type="button" value="-" id="button_minus" class="button_minus">
+            <input type="number" step="1" min="1" max="10" id="num_count" name="quantity" value="1" title="Qty" class="quantity_product">
+            <input type="button" value="+" id="button_plus" class="button_plus">
+        </div>
+  
+        <button class="buy_basket" onclick="inBasket('${i}')" >В КОРЗИНУ</button>
+      </div>`;
+
+    document.querySelector('.cards_wrapper').appendChild(new_card);
+  }
+}
+// render(cards);
+
+const renderByCategory = (category) => {
+  const result = cards.filter(item => item.category === category);
+  render(result);
 }
 
-for (let i = 0; i < cards.length; i++) {
-  const new_card = document.createElement('div');
+renderByCategory(defaultCategory);
 
-  new_card.style.width = '280px';
-  new_card.style.height = '500px';
-  new_card.style.margin = '15px';
-  new_card.innerHTML = `  
-    <div class="card_product" id=""item_box style="height:500px;">
-      <div class="logo_market">
-        <img src="${data.markets[cards[i].market]?.image}" alt="picture">
-      </div>
-      <div class="product_icon_position" 
-        style="position: relative;
-        display: inline-block;
-        margin: 0 auto;
-        vertical-align: top;
-        z-index: 102;">
-        <img src="${cards[i].image}" alt="picture" 
-        style="box-sizing: content-box;
-        border: 10px solid #fbbe18;
-        border-radius: 100%;
-        background-color: #fff;" >
-      </div>
-      <div class="name_product" id="name_product">${cards[i].name}</div>
-      <div class="ingridients" style="height:50px;">${cards[i].description}
-      </div>
-      <div class="price_item">Цена: ${cards[i].price} руб</div>
 
-      <!-- Количество товара -->
-      <div class="input_group quantity_goods">
-          <input type="button" value="-" id="button_minus" class="button_minus">
-          <input type="number" step="1" min="1" max="10" id="num_count" name="quantity" value="1" title="Qty" class="quantity_product">
-          <input type="button" value="+" id="button_plus" class="button_plus">
-      </div>
-
-      <button class="buy_basket" onclick="inBasket()" >В КОРЗИНУ</button>
-    </div>`;
-
-  document.querySelector('.cards_wrapper').appendChild(new_card);
-}
-
-const result = cards.filter(item => item.category === "burgers");
-
+// console.log(result);
 
 {
   const buy_basket = document.createElement('div');
@@ -56,7 +64,7 @@ const result = cards.filter(item => item.category === "burgers");
   buy_basket.innerHTML = `
     <div>
       <div class="shopping_basket_style">
-          <img src="i/shopping-basket.png" alt="picture" style="width: 290px; border-radius: 10px 10px 0px 0px; ">
+          <img src="i/shopping-basket.png" alt="picture" style="width: 290px; border-radius: 10px 10px 0px 0px;">
             <div class="category_name"> 
                 <div class="category_name_style">Название</div>
                 <div class="category_name_style">Количество</div>
@@ -71,7 +79,7 @@ const result = cards.filter(item => item.category === "burgers");
 }
 
 
-//колиство товара
+// колиство товара
 let numCount = document.getElementById('num_count');
 let plusBtn = document.getElementById('button_plus');
 let minusBtn = document.getElementById('button_minus');
@@ -90,11 +98,14 @@ minusBtn.onclick = function () {
 
 
 //корзина
-function inBasket() {
+function inBasket(index) {
+  card = cards[index];
+  console.log(card);
+  debugger;
   let num_Count = document.getElementById("num_count").value;     // Объявляем переменную равную значению введенному в поле количество
   let name_of_product = document.getElementById("name_product").innerHTML;            // Получаем доступ к содержимому элемента <span> с названием цвета товара
-  // let price = ${ data.menu[cards[i].cards].price };
-  let total_price = num_Count * price;           // Объявляем переменную равную общей стоимости (кол-во * цену одного товара)
+  let price = card.price;
+  // let total_price = num_Count * price;             // Объявляем переменную равную общей стоимости (кол-во * цену одного товара)
   // document.getElementById("price_product_in-basket").appendChild(total_price);     //!!!!!
   let name = document.createElement("div");        // Создаем элемент div
   // name_of_product = document.
@@ -122,13 +133,13 @@ function inBasket() {
 }
 
 //окно выбора ингридиентов
-var updateButton = document.getElementById('updateDetails');
-var favDialog = document.getElementById('favDialog');
-var outputBox = document.querySelector('output');
+// var updateButton = document.getElementById('updateDetails');
+// var favDialog = document.getElementById('favDialog');
+// var outputBox = document.querySelector('output');
 
-updateButton.addEventListener('click', function onOpen() {
-  favDialog.showModal();
-});
+// updateButton.addEventListener('click', function onOpen() {
+//   favDialog.showModal();
+// });
 
-favDialog.addEventListener('close', function onClose() {
-});
+// favDialog.addEventListener('close', function onClose() {
+// });
