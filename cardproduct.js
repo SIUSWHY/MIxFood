@@ -1,3 +1,36 @@
+{
+  const menu = document.createElement('div');
+  menu.innerHTML = `
+  <div class="menu_and_shopping_basket_layout">
+  <div class="menu_type">
+      <ul class="list_menu" >
+          <li >
+              <a class="list_menu_2"  >Блины</a>
+          </li>
+          <li>
+              <a class="list_menu_2" onclick="renderByCategory('shaurma')" >Шаурма</a>
+          </li>
+          <li class="active">
+              <a class="list_menu_2" onclick="renderByCategory('sandwiches')" >Сендвичи</a>
+          </li>
+          <li>
+              <a class="list_menu_2" onclick="renderByCategory('burgers')" >Бургеры</a>
+          </li>
+          <li>
+              <a class="list_menu_2" onclick="renderByCategory('chicken')">Курица & Картофель</a>
+          </li>
+          <li>
+              <a class="list_menu_2" onclick="renderByCategory('salads')">Тортилья & Салаты</a>
+          </li>
+          <li>
+              <a class="list_menu_2" onclick="renderByCategory('drinks')">Напитки & Десерты</a>
+          </li>
+      </ul>
+  </div>`;
+  document.querySelector('.menu_type_js').appendChild(menu);
+}
+
+
 const defaultCategory = "sandwiches";
 
 const cards = data.menu;
@@ -10,9 +43,9 @@ function render(cards) {
 
     new_card.classList.add('card_product');
     new_card.innerHTML = `  
-      <div class="card_product" id="item_box" style="height:500px;">
+      <div id="item_box" style="height:500px;">
         <div class="logo_market">
-          <img src="${data.markets[cards[i].market]?.image}" alt="picture">
+          <img src="${data.markets[cards[i].market]?.image}" alt="picture" style="">
         </div>
         <div class="product_icon_position" 
           style="position: relative;
@@ -24,7 +57,7 @@ function render(cards) {
           style="box-sizing: content-box;
           border: 10px solid #fbbe18;
           border-radius: 100%;
-          background-color: #fff;" >
+          background-color: #fff;max-width: 220px;max-height: 220px;" >
         </div>
         <div class="name_product" id="name_product">${cards[i].name}</div>
         <div class="ingridients" style="height:50px;">${cards[i].description}
@@ -45,6 +78,10 @@ function render(cards) {
   }
 }
 // render(cards);
+
+$('#click_switch').click(function () {
+  //Some code
+});
 
 const renderByCategory = (category) => {
   const result = cards.filter(item => item.category === category);
@@ -101,20 +138,19 @@ minusBtn.onclick = function () {
 function inBasket(index) {
   card = cards[index];
   console.log(card);
-  debugger;
-  let num_Count = document.getElementById("num_count").value;     // Объявляем переменную равную значению введенному в поле количество
-  let name_of_product = document.getElementById("name_product").innerHTML;            // Получаем доступ к содержимому элемента <span> с названием цвета товара
+  let num_Count = document.getElementsById("num_count").value;     // Объявляем переменную равную значению введенному в поле количество
+  let name_of_product = document.getElementsById("name_product").innerHTML;            // Получаем доступ к содержимому элемента <span> с названием цвета товара
   let price = card.price;
   // let total_price = num_Count * price;             // Объявляем переменную равную общей стоимости (кол-во * цену одного товара)
-  // document.getElementById("price_product_in-basket").appendChild(total_price);     //!!!!!
+  // document.getElementsById("price_product_in-basket").appendChild(total_price);     //!!!!!
   let name = document.createElement("div");        // Создаем элемент div
   // name_of_product = document.
   name.innerHTML = name_of_product        // Наполняем созданный div содержанием с подстановкой значения num_Count
-  document.getElementById("total-list").appendChild(name);       // Все вкладывается в <div id=buy_basket-script></div>
+  document.getElementsById("total-list").appendChild(name);       // Все вкладывается в <div id=buy_basket-script></div>
 
   let quantity = document.createElement("div");
   quantity.innerHTML = num_Count;
-  document.getElementById("total-list").appendChild(quantity);
+  document.getElementsById("total-list").appendChild(quantity);
 
   // if (name.hasOwnProperty(name_of_product)) { // если такой товар уже в корзине, то добавляем +1 к его количеству
   //   name[cards][2] += 1;
@@ -143,3 +179,5 @@ function inBasket(index) {
 
 // favDialog.addEventListener('close', function onClose() {
 // });
+
+
