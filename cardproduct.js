@@ -4,36 +4,51 @@
   <div class="menu_and_shopping_basket_layout">
   <div class="menu_type">
       <ul class="list_menu" >
-          <li >
-              <a class="list_menu_2"  >Блины</a>
+          <li class="target" data-category="pancake" >
+              <a class="list_menu_2">Блины</a>
           </li>
-          <li>
-              <a class="list_menu_2" onclick="renderByCategory('shaurma')" >Шаурма</a>
+          <li class="target" data-category="shaurma">
+              <a class="list_menu_2">Шаурма</a>
           </li>
-          <li class="active">
-              <a class="list_menu_2" onclick="renderByCategory('sandwiches')" >Сендвичи</a>
+          <li class="target" data-category="sandwiches">
+              <a class="list_menu_2" >Сендвичи</a>
           </li>
-          <li>
-              <a class="list_menu_2" onclick="renderByCategory('burgers')" >Бургеры</a>
+          <li class="target" data-category="burgers">
+              <a class="list_menu_2" >Бургеры</a>
           </li>
-          <li>
-              <a class="list_menu_2" onclick="renderByCategory('chicken')">Курица & Картофель</a>
+          <li class="target" data-category="chicken">
+              <a class="list_menu_2" >Курица & Картофель</a>
           </li>
-          <li>
-              <a class="list_menu_2" onclick="renderByCategory('salads')">Тортилья & Салаты</a>
+          <li class="target" data-category="salads">
+              <a class="list_menu_2" >Тортилья & Салаты</a>
           </li>
-          <li>
-              <a class="list_menu_2" onclick="renderByCategory('drinks')">Напитки & Десерты</a>
+          <li class="target" data-category="drinks">
+              <a class="list_menu_2" >Напитки & Десерты</a>
           </li>
       </ul>
   </div>`;
   document.querySelector('.menu_type_js').appendChild(menu);
 }
 
-
-const defaultCategory = "sandwiches";
+const renderByCategory = (category) => {
+  const result = cards.filter(item => item.category === category);
+  render(result);
+}
 
 const cards = data.menu;
+const defaultCategory = "sandwiches";
+
+renderByCategory(defaultCategory);
+
+const btn = $('.target');
+btn.on('click', function () {
+
+  renderByCategory($(this).data('category'));
+  // defaultCategory.classList.add("active");
+
+});
+
+
 
 function render(cards) {
   document.querySelector('.cards_wrapper').innerHTML = '';
@@ -60,14 +75,14 @@ function render(cards) {
           background-color: #fff;max-width: 220px;max-height: 220px;" >
         </div>
         <div class="name_product" id="name_product">${cards[i].name}</div>
-        <div class="ingridients" style="height:50px;">${cards[i].description}
+        <div class="ingridients" style="height:50px;" onclick="">${cards[i].description}
         </div>
         <div class="price_item">Цена: ${cards[i].price} руб</div>
   
         <!-- Количество товара -->
         <div class="input_group quantity_goods">
             <input type="button" value="-" id="button_minus" class="button_minus">
-            <input type="number" step="1" min="1" max="10" id="num_count" name="quantity" value="1" title="Qty" class="quantity_product">
+            <input type="number" step="1" min="1" max="10" id="num_count" name="quantity" value="1" class="quantity_product">
             <input type="button" value="+" id="button_plus" class="button_plus">
         </div>
   
@@ -77,40 +92,23 @@ function render(cards) {
     document.querySelector('.cards_wrapper').appendChild(new_card);
   }
 }
-// render(cards);
-
-$('#click_switch').click(function () {
-  //Some code
-});
-
-const renderByCategory = (category) => {
-  const result = cards.filter(item => item.category === category);
-  render(result);
-}
-
-renderByCategory(defaultCategory);
+render(cards);
 
 
-// console.log(result);
 
 {
   const buy_basket = document.createElement('div');
-
-  buy_basket.style.width = '280px';
-  buy_basket.style.height = '300px';
   buy_basket.innerHTML = `
-    <div>
-      <div class="shopping_basket_style">
-          <img src="i/shopping-basket.png" alt="picture" style="width: 290px; border-radius: 10px 10px 0px 0px;">
-            <div class="category_name"> 
-                <div class="category_name_style">Название</div>
-                <div class="category_name_style">Количество</div>
-            </div>
-            <div id="total-list"></div>
-            <div class="order_price" id="price_product_in-basket">Итого: 0 руб</div>
-            <div class="checkout_position"><button class="checkout_style">ОФОРМИТЬ ЗАКАЗ</button></div>
-      </div>
-    </div>`;
+    <div class="shopping_basket_style">
+      <img src="i/shopping-basket.png" alt="picture" style="width: 290px; border-radius: 10px 10px 0px 0px;">
+        <div class="category_name">
+          <div class="category_name_style">Название</div>
+          <div class="category_name_style">Количество</div>
+        </div>
+        <div id="total-list"></div>
+        <div class="order_price" id="price_product_in-basket">Итого: 0 руб</div>
+        <div class="checkout_position"><button class="checkout_style">ОФОРМИТЬ ЗАКАЗ</button></div>
+      </div>`;
 
   document.querySelector('.buy_basket_js').appendChild(buy_basket);
 }
@@ -169,15 +167,16 @@ function inBasket(index) {
 }
 
 //окно выбора ингридиентов
-// var updateButton = document.getElementById('updateDetails');
-// var favDialog = document.getElementById('favDialog');
-// var outputBox = document.querySelector('output');
 
-// updateButton.addEventListener('click', function onOpen() {
-//   favDialog.showModal();
-// });
+var updateButton = document.getElementById('updateDetails');
+var favDialog = document.getElementById('favDialog');
+var outputBox = document.querySelector('output');
 
-// favDialog.addEventListener('close', function onClose() {
-// });
+updateButton.addEventListener('click', function onOpen() {
+  favDialog.showModal();
+});
+
+favDialog.addEventListener('close', function onClose() {
+});
 
 

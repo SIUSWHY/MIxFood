@@ -3,6 +3,7 @@
     font-family: 'Proxima', 'Arial', sans-serif;
     /* opacity: 0.5; */
     background-color: #1b3d3c25;
+    margin: 0px;
 
 }
 .menu_and_shopping_basket_layout{
@@ -141,6 +142,11 @@ palitra{
     text-align: center;
     width: 80px;
 }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0;}
+
 .cards_wrapper{
     display: flex;
     flex-wrap: wrap;
@@ -234,3 +240,6 @@ palitra{
     margin-right: 30px;
     color: #bbb;
   }
+.target{
+    cursor: pointer;
+}
