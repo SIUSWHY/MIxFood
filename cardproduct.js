@@ -58,24 +58,16 @@ function render(cards) {
 
     new_card.classList.add('card_product');
     new_card.innerHTML = `  
-      <div id="item_box" style="height:500px;">
+      <div id="item_box">
         <div class="logo_market">
           <img src="${data.markets[cards[i].market]?.image}" alt="picture" style="">
         </div>
-        <div class="product_icon_position" 
-          style="position: relative;
-          display: inline-block;
-          margin: 0 auto;
-          vertical-align: top;
-          z-index: 102;">
-          <img src="${cards[i].image}" alt="picture" 
-          style="box-sizing: content-box;
-          border: 10px solid #fbbe18;
-          border-radius: 100%;
-          background-color: #fff;max-width: 220px;max-height: 220px;" >
+        <div class="product_icon_position">
+          <img src="${cards[i].image}" alt="picture" class="product_icon" 
+          style="" >
         </div>
         <div class="name_product" id="name_product">${cards[i].name}</div>
-        <div class="ingridients" style="height:50px;" onclick="">${cards[i].description}
+        <div class="ingridients" onclick="">${cards[i].description}
         </div>
         <div class="price_item">Цена: ${cards[i].price} руб</div>
   
@@ -100,7 +92,7 @@ render(cards);
   const buy_basket = document.createElement('div');
   buy_basket.innerHTML = `
     <div class="shopping_basket_style">
-      <img src="i/shopping-basket.png" alt="picture" style="width: 290px; border-radius: 10px 10px 0px 0px;">
+      <img src="i/shopping-basket.png" alt="picture">
         <div class="category_name">
           <div class="category_name_style">Название</div>
           <div class="category_name_style">Количество</div>
@@ -115,19 +107,19 @@ render(cards);
 
 
 // колиство товара
-let numCount = document.getElementById('num_count');
-let plusBtn = document.getElementById('button_plus');
-let minusBtn = document.getElementById('button_minus');
-plusBtn.onclick = function () {
-  let qty = parseInt(numCount.value);
-  qty = qty + 1;
-  numCount.value = qty;
-}
-minusBtn.onclick = function () {
-  let qty = parseInt(numCount.value);
-  qty = qty - 1;
-  numCount.value = qty;
-}
+// let numCount = document.getElementById('num_count');
+// let plusBtn = document.getElementById('button_plus');
+// let minusBtn = document.getElementById('button_minus');
+// plusBtn.onclick = function () {
+//   let qty = parseInt(numCount.value);
+//   qty = qty + 1;
+//   numCount.value = qty;
+// }
+// minusBtn.onclick = function () {
+//   let qty = parseInt(numCount.value);
+//   qty = qty - 1;
+//   numCount.value = qty;
+// }
 
 
 
@@ -168,21 +160,22 @@ function inBasket(index) {
 
 //окно выбора ингридиентов
 
-var updateButton = document.getElementById('updateDetails');
-var favDialog = document.getElementById('favDialog');
-var outputBox = document.querySelector('output');
-
-updateButton.addEventListener('click', function onOpen() {
-  favDialog.showModal();
-});
-
-favDialog.addEventListener('close', function onClose() {
-});
-
-
 {
-  const choise_ingredients = document.createElement('div');
-  choise_ingredients.innerHTML = `
+  var updateButton = document.getElementById('updateDetails');
+  var favDialog = document.getElementById('favDialog');
+  var outputBox = document.querySelector('output');
+
+  updateButton.addEventListener('click', function onOpen() {
+    favDialog.showModal();
+  });
+
+  favDialog.addEventListener('close', function onClose() {
+  });
+
+
+  {
+    const choise_ingredients = document.createElement('div');
+    choise_ingredients.innerHTML = `
   <div class="style_dialog_box">
       <div class="style_dialog_head_text">
           <div class="style_head_text">Выберите размер сендвича</div>
@@ -193,19 +186,19 @@ favDialog.addEventListener('close', function onClose() {
       <div class="style_dialog_text_menu">
           <nav>
               <ul class="style_menu">
-                  <li class="right_text_active" data-category="sizes">
+                  <li class="ingredient_target" data-type="sizes">
                       <a class="style_text_menu">Размер</a>
                   </li>
-                  <li data-category="breads">
+                  <li class="ingredient_target" data-type="breads">
                       <a class="style_text_menu">Хлеб</a>
                   </li>
-                  <li data-category="vegetables">
+                  <li class="ingredient_target" data-type="vegetables">
                       <a class="style_text_menu">Овощи</a>
                   </li>
-                  <li data-category="sauces">
+                  <li class="ingredient_target" data-type="sauces">
                       <a class="style_text_menu">Соусы</a>
                   </li>
-                  <li data-category="fillings">
+                  <li class="ingredient_target" data-type="fillings">
                       <a class="style_text_menu">Начинка</a>
                   </li>
               </ul>
@@ -213,28 +206,53 @@ favDialog.addEventListener('close', function onClose() {
       </div>
   </div>
   <button class="button_next_style">ВПЕРЕД <i class="fas fa-angle-right"></i></button>
-  <div class="card_product_style"></div>
+  <div class="card_product_style">&&&&&&&&&</div>
   <div class="price_text_style">Итого: ???? руб.</div>`;
 
-  document.querySelector('.dialog_box_scale').appendChild(choise_ingredients);
-}
+    document.querySelector('.dialog_box_scale').appendChild(choise_ingredients);
+  }
 
-// const default_category = "sizes";
-// renderByCategory(default_category);
 
-//карточки с ингридиентами
-{
-  const card_ingredient = document.createElement('div');
-  card_ingredient.innerHTML = `
-  <div class="card_ingredient_style">
-      <div class="product_icon_position">
-          <div class="ingredient_product_icon">
-              <img class="ingridient_icon_size" src="i/sizes/1x.jpg">
-          </div>
-      </div>
-      <div class="card_ingredient_title">15 Cm</div>
-      <div class="card_ingredient_price">Цена: ???? руб</div>
-  </div>`;
+  const renderByType = (type) => {
+    const resulting = ingredients.filter(items => items.type === type);
+    render(resulting);
+  }
 
-  document.querySelector('.card_product_style').appendChild(card_ingredient);
+  const ingredients = data;
+  const defaulttype = "sizes";
+
+  renderByType(defaulttype);
+
+  const butn = $('.ingredient_target');
+  butn.on('click', function () {
+
+    renderByType($(this).data('type'));
+    // defaulttype.classList.add("active");
+
+  });
+
+
+
+  function render(ingredients) {
+    document.querySelector('.card_product_style').innerHTML = '';
+
+    for (let i = 0; i < ingredients.length; i++) {
+      const cardIngr = document.createElement('div');
+
+      cardIngr.classList.add('card_ingredient_style');
+      cardIngr.innerHTML = `  
+    <div class="card_ingredient_style">
+    <div class="product_icon_position">
+        <div class="ingredient_product_icon">
+            <img class="ingridient_icon_size" src="${ingredients[i].image}">
+        </div>
+    </div>
+    <div class="card_ingredient_title">${ingredients[i].name}</div>
+    <div class="card_ingredient_price">Цена: ${ingredients[i].price} руб</div>
+    </div>`;
+
+      document.querySelector('.card_product_style').appendChild(cardIngr);
+    }
+  }
+  render(ingredients);
 }
