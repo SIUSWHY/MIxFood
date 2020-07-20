@@ -180,3 +180,61 @@ favDialog.addEventListener('close', function onClose() {
 });
 
 
+{
+  const choise_ingredients = document.createElement('div');
+  choise_ingredients.innerHTML = `
+  <div class="style_dialog_box">
+      <div class="style_dialog_head_text">
+          <div class="style_head_text">Выберите размер сендвича</div>
+          <button class="closeButton" id="favDialog"><i class="fas fa-times-circle fa-2x"></i></button>
+      </div>
+  </div>
+  <div class="justify_content_text_menu">
+      <div class="style_dialog_text_menu">
+          <nav>
+              <ul class="style_menu">
+                  <li class="right_text_active" data-category="sizes">
+                      <a class="style_text_menu">Размер</a>
+                  </li>
+                  <li data-category="breads">
+                      <a class="style_text_menu">Хлеб</a>
+                  </li>
+                  <li data-category="vegetables">
+                      <a class="style_text_menu">Овощи</a>
+                  </li>
+                  <li data-category="sauces">
+                      <a class="style_text_menu">Соусы</a>
+                  </li>
+                  <li data-category="fillings">
+                      <a class="style_text_menu">Начинка</a>
+                  </li>
+              </ul>
+          </nav>
+      </div>
+  </div>
+  <button class="button_next_style">ВПЕРЕД <i class="fas fa-angle-right"></i></button>
+  <div class="card_product_style"></div>
+  <div class="price_text_style">Итого: ???? руб.</div>`;
+
+  document.querySelector('.dialog_box_scale').appendChild(choise_ingredients);
+}
+
+// const default_category = "sizes";
+// renderByCategory(default_category);
+
+//карточки с ингридиентами
+{
+  const card_ingredient = document.createElement('div');
+  card_ingredient.innerHTML = `
+  <div class="card_ingredient_style">
+      <div class="product_icon_position">
+          <div class="ingredient_product_icon">
+              <img class="ingridient_icon_size" src="i/sizes/1x.jpg">
+          </div>
+      </div>
+      <div class="card_ingredient_title">15 Cm</div>
+      <div class="card_ingredient_price">Цена: ???? руб</div>
+  </div>`;
+
+  document.querySelector('.card_product_style').appendChild(card_ingredient);
+}
