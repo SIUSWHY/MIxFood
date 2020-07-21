@@ -1,6 +1,7 @@
 {
-  const menu = document.createElement('div');
-  menu.innerHTML = `
+  {
+    const menu = document.createElement('div');
+    menu.innerHTML = `
   <div class="menu_and_shopping_basket_layout">
   <div class="menu_type">
       <ul class="list_menu" >
@@ -27,37 +28,39 @@
           </li>
       </ul>
   </div>`;
-  document.querySelector('.menu_type_js').appendChild(menu);
-}
+    document.querySelector('.menu_type_js').appendChild(menu);
+  }
 
-const renderByCategory = (category) => {
-  const result = cards.filter(item => item.category === category);
-  render(result);
-}
+  const renderByCategory = (category) => {
+    const result = cards.filter(item => item.category === category);
+    render(result);
+  }
 
-const cards = data.menu;
-const defaultCategory = "sandwiches";
+  const cards = data.menu;
+  const defaultCategory = "sandwiches";
 
-renderByCategory(defaultCategory);
+  renderByCategory(defaultCategory);
 
-const btn = $('.target');
-btn.on('click', function () {
+  const btn = $('.target');
+  btn.on('click', function () {
 
-  renderByCategory($(this).data('category'));
-  // defaultCategory.classList.add("active");
+    renderByCategory($(this).data('category'));
+    $(this).removeClass('active');
+    $(this).addClass('active');
+    // $(this).addClass('active');
 
-});
+  });
 
 
 
-function render(cards) {
-  document.querySelector('.cards_wrapper').innerHTML = '';
+  function render(cards) {
+    document.querySelector('.cards_wrapper').innerHTML = '';
 
-  for (let i = 0; i < cards.length; i++) {
-    const new_card = document.createElement('div');
+    for (let i = 0; i < cards.length; i++) {
+      const new_card = document.createElement('div');
 
-    new_card.classList.add('card_product');
-    new_card.innerHTML = `  
+      new_card.classList.add('card_product');
+      new_card.innerHTML = `  
       <div id="item_box">
         <div class="logo_market">
           <img src="${data.markets[cards[i].market]?.image}" alt="picture" style="">
@@ -81,10 +84,11 @@ function render(cards) {
         <button class="buy_basket" onclick="inBasket('${i}')" >В КОРЗИНУ</button>
       </div>`;
 
-    document.querySelector('.cards_wrapper').appendChild(new_card);
+      document.querySelector('.cards_wrapper').appendChild(new_card);
+    }
   }
+  render(cards);
 }
-render(cards);
 
 
 
@@ -208,7 +212,7 @@ function inBasket(index) {
       </div>
   </div>
   <button class="button_next_style">ВПЕРЕД <i class="fas fa-angle-right"></i></button>
-  <div class="card_product_style">&&&&&&&&&</div>
+  <div class="card_product_style"></div>
   <div class="price_text_style">Итого: ???? руб.</div>`;
 
     document.querySelector('.dialog_box_scale').appendChild(choise_ingredients);
