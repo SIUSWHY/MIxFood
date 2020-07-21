@@ -20,9 +20,10 @@
     margin-top: 20px;
 }
 .shopping_basket_pic_style{
-    width: 290px; 
+    width: 290px;
     border-radius: 10px 10px 0px 0px;
 }
+
 .list_products{
     width: auto;
     display: flex;
@@ -246,7 +247,6 @@ palitra{
 .style_dialog_text_menu{
     background-color: white;
     border-radius: 15px;
-    width: 700px;
     
 }
 .justify_content_text_menu{
@@ -271,11 +271,12 @@ palitra{
 
 }
 .card_ingredient_style{
-    background-color: #fbbe18;
+    /* background-color: #fbbe18; */
     width: 200px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    margin: 20px 10px;
 }
 .card_ingredient_title{
     text-align: center;
@@ -294,7 +295,7 @@ palitra{
 .card_product_style{
     margin: 50px;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
 }
 .button_next_style{
     border: none;

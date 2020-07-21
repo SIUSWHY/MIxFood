@@ -92,7 +92,7 @@ render(cards);
   const buy_basket = document.createElement('div');
   buy_basket.innerHTML = `
     <div class="shopping_basket_style">
-      <img src="i/shopping-basket.png" alt="picture">
+      <img src="i/shopping-basket.png" class="shopping_basket_pic_style" alt="picture">
         <div class="category_name">
           <div class="category_name_style">Название</div>
           <div class="category_name_style">Количество</div>
@@ -127,7 +127,6 @@ render(cards);
 //корзина
 function inBasket(index) {
   card = cards[index];
-  console.log(card);
   let num_Count = document.getElementsById("num_count").value;     // Объявляем переменную равную значению введенному в поле количество
   let name_of_product = document.getElementsById("name_product").innerHTML;            // Получаем доступ к содержимому элемента <span> с названием цвета товара
   let price = card.price;
@@ -201,6 +200,9 @@ function inBasket(index) {
                   <li class="ingredient_target" data-type="fillings">
                       <a class="style_text_menu">Начинка</a>
                   </li>
+                  <li class="ingredient_target" data-type="ready">
+                      <a class="style_text_menu">Готово!</a>
+                  </li>
               </ul>
           </nav>
       </div>
@@ -213,46 +215,29 @@ function inBasket(index) {
   }
 
 
-  const renderByType = (type) => {
-    const resulting = ingredients.filter(items => items.type === type);
-    render(resulting);
-  }
 
-  const ingredients = data;
-  const defaulttype = "sizes";
-
-  renderByType(defaulttype);
-
-  const butn = $('.ingredient_target');
-  butn.on('click', function () {
-
-    renderByType($(this).data('type'));
-    // defaulttype.classList.add("active");
-
-  });
-
-
+  const sauces = data.sauces;
+  const vegetables = data.vegetables;
+  const sizes = data.sizes;
+  const fillings = data.fillings;
+  let ingredients = fillings;
 
   function render(ingredients) {
     document.querySelector('.card_product_style').innerHTML = '';
 
-    for (let i = 0; i < ingredients.length; i++) {
+    for (const i in ingredients) {
       const cardIngr = document.createElement('div');
-
       cardIngr.classList.add('card_ingredient_style');
       cardIngr.innerHTML = `  
-    <div class="card_ingredient_style">
     <div class="product_icon_position">
-        <div class="ingredient_product_icon">
-            <img class="ingridient_icon_size" src="${ingredients[i].image}">
-        </div>
+            <img class="ingredient_product_icon" src="${ingredients[i].image}">
     </div>
     <div class="card_ingredient_title">${ingredients[i].name}</div>
-    <div class="card_ingredient_price">Цена: ${ingredients[i].price} руб</div>
-    </div>`;
+    <div class="card_ingredient_price">Цена: ${ingredients[i].price} руб</div>`;
 
       document.querySelector('.card_product_style').appendChild(cardIngr);
     }
   }
   render(ingredients);
+  console.log(ingredients);
 }
