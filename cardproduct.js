@@ -5,9 +5,6 @@
   <div class="menu_and_shopping_basket_layout">
   <div class="menu_type">
       <ul class="list_menu" >
-          <li class="target" data-category="pancake" >
-              <a class="list_menu_2">Блины</a>
-          </li>
           <li class="target" data-category="shaurma">
               <a class="list_menu_2">Шаурма</a>
           </li>
@@ -31,6 +28,7 @@
     document.querySelector('.menu_type_js').appendChild(menu);
   }
 
+
   const renderByCategory = (category) => {
     const result = cards.filter(item => item.category === category);
     render(result);
@@ -38,19 +36,17 @@
 
   const cards = data.menu;
   const defaultCategory = "sandwiches";
-
   renderByCategory(defaultCategory);
 
   const btn = $('.target');
   btn.on('click', function () {
 
     renderByCategory($(this).data('category'));
-    $(this).removeClass('active');
+
+    $(".target").removeClass('active');
     $(this).addClass('active');
-    // $(this).addClass('active');
 
   });
-
 
 
   function render(cards) {
@@ -70,7 +66,7 @@
           style="" >
         </div>
         <div class="name_product" id="name_product">${cards[i].name}</div>
-        <div class="ingridients" onclick="">${cards[i].description}
+        <div class="ingredients"><a class="description_border">${cards[i].description}</a>
         </div>
         <div class="price_item">Цена: ${cards[i].price} руб</div>
   
@@ -88,13 +84,38 @@
     }
   }
   render(cards);
+
+
+  var favDialog = document.getElementById('favDialog');
+
+  const openMenu = $('.description_border');
+  openMenu.on('click', function () {
+    favDialog.showModal();
+  })
+
+  favDialog.addEventListener('click', function onClose() {
+    favDialog.close();
+  });
+
+
+  // колиство товара
+  let numCount = document.getElementById('num_count');
+  let plusBtn = document.getElementById('button_plus');
+  let minusBtn = document.getElementById('button_minus');
+  plusBtn.onclick = function () {
+    let qty = parseInt(numCount.value);
+    qty = qty + 1;
+    numCount.value = qty;
+  }
+  minusBtn.onclick = function () {
+    let qty = parseInt(numCount.value);
+    qty = qty - 1;
+    numCount.value = qty;
+  }
 }
 
-
-
-{
-  const buy_basket = document.createElement('div');
-  buy_basket.innerHTML = `
+const buy_basket = document.createElement('div');
+buy_basket.innerHTML = `
     <div class="shopping_basket_style">
       <img src="i/shopping-basket.png" class="shopping_basket_pic_style" alt="picture">
         <div class="category_name">
@@ -106,26 +127,7 @@
         <div class="checkout_position"><button class="checkout_style">ОФОРМИТЬ ЗАКАЗ</button></div>
       </div>`;
 
-  document.querySelector('.buy_basket_js').appendChild(buy_basket);
-}
-
-
-// колиство товара
-// let numCount = document.getElementById('num_count');
-// let plusBtn = document.getElementById('button_plus');
-// let minusBtn = document.getElementById('button_minus');
-// plusBtn.onclick = function () {
-//   let qty = parseInt(numCount.value);
-//   qty = qty + 1;
-//   numCount.value = qty;
-// }
-// minusBtn.onclick = function () {
-//   let qty = parseInt(numCount.value);
-//   qty = qty - 1;
-//   numCount.value = qty;
-// }
-
-
+document.querySelector('.buy_basket_js').appendChild(buy_basket);
 
 
 //корзина
@@ -161,28 +163,16 @@ function inBasket(index) {
   return false;
 }
 
-//окно выбора ингридиентов
 
 {
-  var updateButton = document.getElementById('updateDetails');
-  var favDialog = document.getElementById('favDialog');
-  var outputBox = document.querySelector('output');
-
-  updateButton.addEventListener('click', function onOpen() {
-    favDialog.showModal();
-  });
-
-  favDialog.addEventListener('close', function onClose() {
-  });
-
-
+  //окно выбора ингридиентов
   {
     const choise_ingredients = document.createElement('div');
     choise_ingredients.innerHTML = `
   <div class="style_dialog_box">
       <div class="style_dialog_head_text">
           <div class="style_head_text">Выберите размер сендвича</div>
-          <button class="closeButton" id="favDialog"><i class="fas fa-times-circle fa-2x"></i></button>
+          <button class="closeButton" type="submit" id="favDialog"><i class="fas fa-times-circle fa-2x"></i></button>
       </div>
   </div>
   <div class="justify_content_text_menu">
@@ -212,19 +202,34 @@ function inBasket(index) {
       </div>
   </div>
   <button class="button_next_style">ВПЕРЕД <i class="fas fa-angle-right"></i></button>
-  <div class="card_product_style"></div>
+  <div class="card_product_style">&&&&&&&&</div>
   <div class="price_text_style">Итого: ???? руб.</div>`;
 
     document.querySelector('.dialog_box_scale').appendChild(choise_ingredients);
   }
 
-
+  const renderByType = (type) => {
+    const resulting = ingredients.filter(item => item.type === type);
+    render(resulting);
+  }
 
   const sauces = data.sauces;
   const vegetables = data.vegetables;
   const sizes = data.sizes;
   const fillings = data.fillings;
-  let ingredients = fillings;
+  // const ingredients = (sauces + vegetables + sizes + fillings);
+  const ingredients = data.sizes;
+  renderByType(ingredients);
+
+
+
+
+  // const btnNextType = $('.ingredient_target');
+  // btnNextType.on('click', function () {
+
+
+
+  // })
 
   function render(ingredients) {
     document.querySelector('.card_product_style').innerHTML = '';

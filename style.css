@@ -8,7 +8,7 @@
 }
 .menu_and_shopping_basket_layout{
     float: left;
-    margin-right: 25px;
+    margin: 5px 15px 0px 0px;
     display: flex;
     flex-direction: column;
 }
@@ -37,6 +37,7 @@
     padding: 0px;
     text-align: center;
     width: 290px;
+    margin: 0px;
 }
 .list_menu_2{
     font-weight: 600;
@@ -110,13 +111,21 @@ palitra{
     font-size: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
+    
 }
-.ingridients{
+.ingredients{
     border-bottom: 2px solid black;
     border-top: 2px solid black;
-    font-weight: 600;
     padding: 5px;
     height: 50px;
+
+}
+.description_border{
+    border-bottom: 1px dashed #000080;
+    font-weight: 600;
+    color: #000080;
+    cursor: pointer;
+
 
 }
 .price_item{
