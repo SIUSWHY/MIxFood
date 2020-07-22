@@ -73,7 +73,7 @@
         <!-- Количество товара -->
         <div class="input_group quantity_goods">
             <input type="button" value="-" id="button_minus" class="button_minus">
-            <input type="number" step="1" min="1" max="10" id="num_count" name="quantity" value="1" class="quantity_product">
+            <input type="number" step="1" min="1" max="10" title="Qty" id="num_count" name="quantity" value="1" class="quantity_product">
             <input type="button" value="+" id="button_plus" class="button_plus">
         </div>
   
@@ -99,19 +99,40 @@
 
 
   // колиство товара
-  let numCount = document.getElementById('num_count');
-  let plusBtn = document.getElementById('button_plus');
-  let minusBtn = document.getElementById('button_minus');
-  plusBtn.onclick = function () {
+  let numCount = document.getElementsByClassName('quantity_product');
+  let qty = document.getElementsByClassName('quantity')
+  // let plusBtn = document.getElementsByClassName('button_plus');
+  // let minusBtn = document.getElementsByClassName('button_minus');
+  // plusBtn.onclick = function () {
+  //   let qty = parseInt(numCount.value);
+  //   qty = qty + 1;
+  //   numCount.value = qty;
+  // }
+  // minusBtn.onclick = function () {
+  //   let qty = parseInt(numCount.value);
+  //   qty = qty - 1;
+  //   numCount.value = qty;
+  // }
+
+  const plusBtn = $('.button_plus');
+  plusBtn.on('click', function () {
+
     let qty = parseInt(numCount.value);
     qty = qty + 1;
     numCount.value = qty;
-  }
-  minusBtn.onclick = function () {
+
+  })
+
+  const minusBtn = $('.button_minus');
+  minusBtn.on('click', function () {
+
     let qty = parseInt(numCount.value);
     qty = qty - 1;
     numCount.value = qty;
-  }
+
+  })
+
+
 }
 
 const buy_basket = document.createElement('div');
@@ -209,7 +230,7 @@ function inBasket(index) {
   }
 
   const renderByType = (type) => {
-    const resulting = ingredients.filter(item => item.type === type);
+    const resulting = Object.entries(ingredients).filter(item => item.type === type);
     render(resulting);
   }
 
