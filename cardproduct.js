@@ -71,10 +71,10 @@
         <div class="price_item">Цена: ${cards[i].price} руб</div>
   
         <!-- Количество товара -->
-        <div class="input_group quantity_goods">
-            <input type="button" value="-" id="button_minus" class="button_minus">
-            <input type="number" step="1" min="1" max="10" title="Qty" id="num_count" name="quantity" value="1" class="quantity_product">
-            <input type="button" value="+" id="button_plus" class="button_plus">
+        <div class="input_group_quantity_goods">
+          <div class="button_minus_style"><span class="button_minus">-</span></div>
+          <input class="quantity_product" type="text" value="1" size="5"/>
+          <div class="button_plus_style" ><span class="button_plus">+</span></div>
         </div>
   
         <button class="buy_basket" onclick="inBasket('${i}')" >В КОРЗИНУ</button>
@@ -86,51 +86,33 @@
   render(cards);
 
 
-  var favDialog = document.getElementById('favDialog');
+  let favDialog = document.getElementById('favDialog');
 
   const openMenu = $('.description_border');
   openMenu.on('click', function () {
     favDialog.showModal();
   })
 
-  favDialog.addEventListener('click', function onClose() {
-    favDialog.close();
-  });
+  // favDialog.addEventListener('click', function onClose() {
+  //   favDialog.close();
+  // });
 
 
   // колиство товара
-  let numCount = document.getElementsByClassName('quantity_product');
-  let qty = document.getElementsByClassName('quantity')
-  // let plusBtn = document.getElementsByClassName('button_plus');
-  // let minusBtn = document.getElementsByClassName('button_minus');
-  // plusBtn.onclick = function () {
-  //   let qty = parseInt(numCount.value);
-  //   qty = qty + 1;
-  //   numCount.value = qty;
-  // }
-  // minusBtn.onclick = function () {
-  //   let qty = parseInt(numCount.value);
-  //   qty = qty - 1;
-  //   numCount.value = qty;
-  // }
-
-  const plusBtn = $('.button_plus');
-  plusBtn.on('click', function () {
-
-    let qty = parseInt(numCount.value);
-    qty = qty + 1;
-    numCount.value = qty;
-
-  })
-
-  const minusBtn = $('.button_minus');
-  minusBtn.on('click', function () {
-
-    let qty = parseInt(numCount.value);
-    qty = qty - 1;
-    numCount.value = qty;
-
-  })
+  $('.button_minus_style').click(function () {
+    var $input = $(this).parent().find('input');
+    var count = parseInt($input.val()) - 1;
+    count = count < 1 ? 1 : count;
+    $input.val(count);
+    $input.change();
+    return false;
+  });
+  $('.button_plus_style').click(function () {
+    var $input = $(this).parent().find('input');
+    $input.val(parseInt($input.val()) + 1);
+    $input.change();
+    return false;
+  });
 
 
 }
@@ -150,39 +132,6 @@ buy_basket.innerHTML = `
 
 document.querySelector('.buy_basket_js').appendChild(buy_basket);
 
-
-//корзина
-function inBasket(index) {
-  card = cards[index];
-  let num_Count = document.getElementsById("num_count").value;     // Объявляем переменную равную значению введенному в поле количество
-  let name_of_product = document.getElementsById("name_product").innerHTML;            // Получаем доступ к содержимому элемента <span> с названием цвета товара
-  let price = card.price;
-  // let total_price = num_Count * price;             // Объявляем переменную равную общей стоимости (кол-во * цену одного товара)
-  // document.getElementsById("price_product_in-basket").appendChild(total_price);     //!!!!!
-  let name = document.createElement("div");        // Создаем элемент div
-  // name_of_product = document.
-  name.innerHTML = name_of_product        // Наполняем созданный div содержанием с подстановкой значения num_Count
-  document.getElementsById("total-list").appendChild(name);       // Все вкладывается в <div id=buy_basket-script></div>
-
-  let quantity = document.createElement("div");
-  quantity.innerHTML = num_Count;
-  document.getElementsById("total-list").appendChild(quantity);
-
-  // if (name.hasOwnProperty(name_of_product)) { // если такой товар уже в корзине, то добавляем +1 к его количеству
-  //   name[cards][2] += 1;
-  // } else { // если товара в корзине еще нет, то добавляем в объект
-  //   name[cards] = [itemTitle, itemPrice, 1];
-  // }
-
-  // const cart = {
-  //   name: {
-  //     price: 1,
-  //     quantity: 1
-  //   }
-  // }
-
-  return false;
-}
 
 
 {
@@ -222,27 +171,44 @@ function inBasket(index) {
           </nav>
       </div>
   </div>
+  <div>
+  <button class="button_back_style"><i class="fas fa-angle-left"></i> НАЗАД</button>
   <button class="button_next_style">ВПЕРЕД <i class="fas fa-angle-right"></i></button>
+  </div> 
   <div class="card_product_style">&&&&&&&&</div>
   <div class="price_text_style">Итого: ???? руб.</div>`;
 
     document.querySelector('.dialog_box_scale').appendChild(choise_ingredients);
   }
 
-  const renderByType = (type) => {
-    const resulting = Object.entries(ingredients).filter(item => item.type === type);
-    render(resulting);
-  }
+  // const ingrChoice = $('.card_ingredient_style');
+  // ingrChoice.on('click', function () {
 
-  const sauces = data.sauces;
-  const vegetables = data.vegetables;
-  const sizes = data.sizes;
+  //   $(".target").removeClass('active');
+  //   $(this).addClass('active');
+
+  // });
+
+
+
+
+  // const renderByType = (type) => {
+  //   const resulting = Object.entries(fillings).filter(item => item.type === type);
+  //   render(resulting);
+  //   console.log(resulting);
+  // }
+
+  // const sauces = data.sauces;
+  // const vegetables = data.vegetables;
+  // const sizes = data.sizes;
   const fillings = data.fillings;
-  // const ingredients = (sauces + vegetables + sizes + fillings);
-  const ingredients = data.sizes;
-  renderByType(ingredients);
+  // const ingredients = (sizes + fillings);
+  // // const ingredients = data.sizes;  
+  // renderByType(ingredients);
 
-
+  for (let [key, value] of Object.entries(fillings)) {
+    console.log(key, value);
+  }
 
 
   // const btnNextType = $('.ingredient_target');
