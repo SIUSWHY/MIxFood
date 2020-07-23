@@ -77,7 +77,7 @@
           <div class="button_plus_style" ><span class="button_plus">+</span></div>
         </div>
   
-        <button class="buy_basket" onclick="inBasket('${i}')" >В КОРЗИНУ</button>
+        <button class="buy_basket" >В КОРЗИНУ</button>
       </div>`;
 
       document.querySelector('.cards_wrapper').appendChild(new_card);
@@ -181,37 +181,27 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
     document.querySelector('.dialog_box_scale').appendChild(choise_ingredients);
   }
 
-  // const ingrChoice = $('.card_ingredient_style');
-  // ingrChoice.on('click', function () {
-
-  //   $(".target").removeClass('active');
-  //   $(this).addClass('active');
-
-  // });
 
 
-
-
-  // const renderByType = (type) => {
-  //   const resulting = Object.entries(fillings).filter(item => item.type === type);
-  //   render(resulting);
-  //   console.log(resulting);
-  // }
-
-  // const sauces = data.sauces;
-  // const vegetables = data.vegetables;
-  // const sizes = data.sizes;
-  const fillings = data.fillings;
-  // const ingredients = (sizes + fillings);
-  // // const ingredients = data.sizes;  
-  // renderByType(ingredients);
-
-  for (let [key, value] of Object.entries(fillings)) {
+  for (let [key, value] of Object.entries({
+    fillings: data.fillings,
+    sizes: data.sizes
+  })) {
     console.log(key, value);
+    render(value);
+
   }
 
+  let allMenuType = [
+    { sizes: data.sizes },
+    { breads: data.breads },
+    { vegetables: data.vegetables },
+    { sauces: data.sauces },
+    { fillings: data.fillings },
+  ];
+  console.log(allMenuType);
 
-  // const btnNextType = $('.ingredient_target');
+  const btnNextType = $('.ingredient_target');
   // btnNextType.on('click', function () {
 
 
@@ -234,6 +224,5 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
       document.querySelector('.card_product_style').appendChild(cardIngr);
     }
   }
-  render(ingredients);
-  console.log(ingredients);
+  // console.log(ingredients);
 }
