@@ -36,7 +36,7 @@
 
   const cards = data.menu;
   const defaultCategory = "sandwiches";
-  renderByCategory(defaultCategory);
+  render(defaultCategory);
 
   const btn = $('.target');
   btn.on('click', function () {
@@ -88,8 +88,7 @@
 
   let favDialog = document.getElementById('favDialog');
 
-  const openMenu = $('.description_border');
-  openMenu.on('click', function () {
+  $(document).on('click', '.description_border', function () {
     favDialog.showModal();
   })
 
@@ -99,7 +98,7 @@
 
 
   // колиство товара
-  $('.button_minus_style').click(function () {
+  $(document).on('click', 'button_minus_style', function () {
     var $input = $(this).parent().find('input');
     var count = parseInt($input.val()) - 1;
     count = count < 1 ? 1 : count;
@@ -173,40 +172,51 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
   </div>
   <div>
   <button class="button_back_style"><i class="fas fa-angle-left"></i> НАЗАД</button>
-  <button class="button_next_style">ВПЕРЕД <i class="fas fa-angle-right"></i></button>
+  <button class="button_next_style" id="trash">ВПЕРЕД <i class="fas fa-angle-right"></i></button>
   </div> 
-  <div class="card_product_style">&&&&&&&&</div>
+  <div class="card_product_style"></div>
   <div class="price_text_style">Итого: ???? руб.</div>`;
 
     document.querySelector('.dialog_box_scale').appendChild(choise_ingredients);
   }
 
-
-
-  for (let [key, value] of Object.entries({
-    fillings: data.fillings,
-    sizes: data.sizes
-  })) {
-    console.log(key, value);
-    render(value);
-
-  }
-
   let allMenuType = [
-    { sizes: data.sizes },
-    { breads: data.breads },
-    { vegetables: data.vegetables },
-    { sauces: data.sauces },
-    { fillings: data.fillings },
-  ];
-  console.log(allMenuType);
+    data.sizes,     //1шт
+    data.breads,    //1шт
+    data.vegetables,//3шт
+    data.sauces,    //?шт
+    data.fillings,  //?шт
+  ]
 
-  const btnNextType = $('.ingredient_target');
-  // btnNextType.on('click', function () {
+  render(allMenuType[0]);
+  let i = 0;
 
+  const btnNextType = $('.button_next_style');
+  btnNextType.on('click', function () {
 
+    if (i < allMenuType.length - 1) {
+      i++
+    }
 
-  // })
+    console.log(allMenuType[i]);
+    render(allMenuType[i])
+
+    // $(this).removeClass('active');
+    // $(".style_text_menu").addClass('active');
+
+  });
+
+  const btnBackType = $('.button_back_style');
+  btnBackType.on('click', function () {
+
+    if (allMenuType.length < i < allMenuType.length + 1) {
+      i--
+    }
+
+    console.log(allMenuType[i]);
+    render(allMenuType[i]);
+
+  });
 
   function render(ingredients) {
     document.querySelector('.card_product_style').innerHTML = '';
@@ -224,5 +234,4 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
       document.querySelector('.card_product_style').appendChild(cardIngr);
     }
   }
-  // console.log(ingredients);
 }
