@@ -1,4 +1,5 @@
 {
+  //меню
   {
     const menu = document.createElement('div');
     menu.innerHTML = `
@@ -8,7 +9,7 @@
           <li class="target" data-category="shaurma">
               <a class="list_menu_2">Шаурма</a>
           </li>
-          <li class="target" data-category="sandwiches">
+          <li class="target active" data-category="sandwiches">
               <a class="list_menu_2" >Сендвичи</a>
           </li>
           <li class="target" data-category="burgers">
@@ -28,7 +29,7 @@
     document.querySelector('.menu_type_js').appendChild(menu);
   }
 
-
+  // рендер по категории
   const renderByCategory = (category) => {
     const result = cards.filter(item => item.category === category);
     render(result);
@@ -38,6 +39,7 @@
   const defaultCategory = "sandwiches";
   render(defaultCategory);
 
+  // смена класса по клику
   const btn = $('.target');
   btn.on('click', function () {
 
@@ -49,6 +51,7 @@
   });
 
 
+  // рендер продуктовых карточек 
   function render(cards) {
     document.querySelector('.cards_wrapper').innerHTML = '';
 
@@ -85,9 +88,8 @@
   }
   render(cards);
 
-
+  // меню с выбором ингридиентов 
   let favDialog = document.getElementById('favDialog');
-
   $(document).on('click', '.description_border', function () {
     favDialog.showModal();
   })
@@ -106,6 +108,7 @@
     $input.change();
     return false;
   });
+
   $('.button_plus_style').click(function () {
     var $input = $(this).parent().find('input');
     $input.val(parseInt($input.val()) + 1);
@@ -113,9 +116,9 @@
     return false;
   });
 
-
 }
 
+// корзина покупок
 const buy_basket = document.createElement('div');
 buy_basket.innerHTML = `
     <div class="shopping_basket_style">
@@ -149,7 +152,7 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
           <nav>
               <ul class="style_menu">
                   <li class="ingredient_target" data-type="sizes">
-                      <a class="style_text_menu">Размер</a>
+                      <a class="style_text_menu active_type_menu ">Размер</a>
                   </li>
                   <li class="ingredient_target" data-type="breads">
                       <a class="style_text_menu">Хлеб</a>
@@ -196,21 +199,23 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
 
     if (i < allMenuType.length - 1) {
       i++
+      document.querySelector(`.ingredient_target:nth-child(${i + 1})`).querySelector('.style_text_menu').classList.add('active_type_menu')
+
     }
 
     console.log(allMenuType[i]);
     render(allMenuType[i])
-
-    // $(this).removeClass('active');
-    // $(".style_text_menu").addClass('active');
 
   });
 
   const btnBackType = $('.button_back_style');
   btnBackType.on('click', function () {
 
-    if (allMenuType.length < i < allMenuType.length + 1) {
+    if (i > 0) {
+
       i--
+      document.querySelector(`.ingredient_target:nth-child(${i + 1})`).querySelector('.style_text_menu').classList.remove('active_type_menu')
+      document.querySelector(`.ingredient_target:nth-child(${i + 1})`).querySelector('.style_text_menu').classList.add('active_type_menu')
     }
 
     console.log(allMenuType[i]);
@@ -218,6 +223,13 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
 
   });
 
+
+
+  $(document).on('click', '.card_ingredient_style', function () {
+    $(this).toggleClass('active_card_ingredient_style')
+  })
+
+  // карточки с индридиентами
   function render(ingredients) {
     document.querySelector('.card_product_style').innerHTML = '';
 

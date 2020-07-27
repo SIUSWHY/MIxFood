@@ -66,10 +66,17 @@ palitra{
     color: #e94a54;
 
 }
-.right_text_active{
+.active_type_menu{
     background-color: #e94a54;
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px;
     color: white;
+}
+.none_display{
+    display: none;
+}
+.active_card_ingredient_style{
+    background-color: #fbbe18;
+    border-radius: 10px;
 }
 .card_product{
     text-align: center;
