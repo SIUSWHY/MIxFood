@@ -82,7 +82,7 @@ palitra{
     text-align: center;
     width: 240px;
     height: auto;
-    margin: 10px 10px 70px 10px;
+    margin: 10px 10px 90px 10px;
     height: 480px;
 }
 .logo_market{
@@ -94,6 +94,16 @@ palitra{
     margin: 0 auto;
     vertical-align: top;
     z-index: 102;
+}
+.product_icon_back_img{
+    width: 220px;
+    height: 220px;
+    /* background-repeat: no-repeat;
+    background-position: center; 
+    background-size:contain; */
+    border: 10px solid #fbbe18;
+    border-radius: 100%;
+    /* background-color: #fff; */
 }
 .ingredient_product_icon{
     box-sizing: content-box;
@@ -113,7 +123,8 @@ palitra{
     max-height: 220px;
 }
 .name_product{
-    align-items: center;
+    min-height: 44px;
+    text-align: center;
     font-weight: 600;
     font-size: 20px;
     margin-top: 10px;

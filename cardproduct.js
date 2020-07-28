@@ -6,11 +6,11 @@
   <div class="menu_and_shopping_basket_layout">
   <div class="menu_type">
       <ul class="list_menu" >
-          <li class="target" data-category="shaurma">
-              <a class="list_menu_2">Шаурма</a>
-          </li>
           <li class="target active" data-category="sandwiches">
               <a class="list_menu_2" >Сендвичи</a>
+          </li>
+          <li class="target" data-category="shaurma">
+              <a class="list_menu_2">Шаурма</a>
           </li>
           <li class="target" data-category="burgers">
               <a class="list_menu_2" >Бургеры</a>
@@ -37,7 +37,10 @@
 
   const cards = data.menu;
   const defaultCategory = "sandwiches";
-  render(defaultCategory);
+
+  renderByCategory(defaultCategory);
+
+
 
   // смена класса по клику
   const btn = $('.target');
@@ -65,10 +68,15 @@
           <img src="${data.markets[cards[i].market]?.image}" alt="picture" style="">
         </div>
         <div class="product_icon_position">
-          <img src="${cards[i].image}" alt="picture" class="product_icon" 
-          style="" >
+          <div class="product_icon_back_img";
+          style="background: url(${cards[i].image});
+          background-repeat: no-repeat;
+          background-position: center; 
+          background-size:contain;
+          background-color: #fff;">
         </div>
-        <div class="name_product" id="name_product">${cards[i].name}</div>
+        </div>
+        <div class="name_product">${cards[i].name}</div>
         <div class="ingredients"><a class="description_border">${cards[i].description}</a>
         </div>
         <div class="price_item">Цена: ${cards[i].price} руб</div>
@@ -86,18 +94,17 @@
       document.querySelector('.cards_wrapper').appendChild(new_card);
     }
   }
-  render(cards);
+
 
   // меню с выбором ингридиентов 
-  let favDialog = document.getElementById('favDialog');
+  const favDialog = document.getElementById('favDialog');
   $(document).on('click', '.description_border', function () {
     favDialog.showModal();
   })
 
-  // favDialog.addEventListener('click', function onClose() {
-  //   favDialog.close();
-  // });
-
+  $(document).on('click', '.closeButton', function () {
+    favDialog.close();
+  })
 
   // колиство товара
   $(document).on('click', 'button_minus_style', function () {
@@ -199,8 +206,8 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
 
     if (i < allMenuType.length - 1) {
       i++
+      $(".style_text_menu").removeClass('active_type_menu');
       document.querySelector(`.ingredient_target:nth-child(${i + 1})`).querySelector('.style_text_menu').classList.add('active_type_menu')
-
     }
 
     console.log(allMenuType[i]);
@@ -214,7 +221,7 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
     if (i > 0) {
 
       i--
-      document.querySelector(`.ingredient_target:nth-child(${i + 1})`).querySelector('.style_text_menu').classList.remove('active_type_menu')
+      $(".style_text_menu").removeClass('active_type_menu');
       document.querySelector(`.ingredient_target:nth-child(${i + 1})`).querySelector('.style_text_menu').classList.add('active_type_menu')
     }
 
@@ -238,7 +245,12 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
       cardIngr.classList.add('card_ingredient_style');
       cardIngr.innerHTML = `  
     <div class="product_icon_position">
-            <img class="ingredient_product_icon" src="${ingredients[i].image}">
+    <div class="ingredient_product_icon"; 
+      style="background: url(${ingredients[i].image});
+      background-repeat: no-repeat;
+      background-position: center; 
+      background-size:contain;
+      background-color: #fff;"></div>
     </div>
     <div class="card_ingredient_title">${ingredients[i].name}</div>
     <div class="card_ingredient_price">Цена: ${ingredients[i].price} руб</div>`;
