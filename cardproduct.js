@@ -40,8 +40,6 @@
 
   renderByCategory(defaultCategory);
 
-
-
   // смена класса по клику
   const btn = $('.target');
   btn.on('click', function () {
@@ -151,7 +149,7 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
   <div class="style_dialog_box">
       <div class="style_dialog_head_text">
           <div class="style_head_text">Выберите размер сендвича</div>
-          <button class="closeButton" type="submit" id="favDialog"><i class="fas fa-times-circle fa-2x"></i></button>
+          <button class="closeButton" type="submit" id="favDialog"><i class="fas fa-times-circle fa-3x"></i></button>
       </div>
   </div>
   <div class="justify_content_text_menu">
@@ -185,7 +183,7 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
   <button class="button_next_style" id="trash">ВПЕРЕД <i class="fas fa-angle-right"></i></button>
   </div> 
   <div class="card_product_style"></div>
-  <div class="price_text_style">Итого: ???? руб.</div>`;
+  <div class="price_text_style">Итого: <div class="total_price"> 0 </div> руб.</div>`;
 
     document.querySelector('.dialog_box_scale').appendChild(choise_ingredients);
   }
@@ -200,6 +198,7 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
 
   render(allMenuType[0]);
   let i = 0;
+
 
   const btnNextType = $('.button_next_style');
   btnNextType.on('click', function () {
@@ -230,11 +229,18 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
 
   });
 
+  let selectedIngedients = []
+
+  $(document).on('click', '.card_ingredient_style', function () {
+    selectedIngedients = [] + $(this);
+    console.log(Object.values($(this)));
+
+  });
 
 
   $(document).on('click', '.card_ingredient_style', function () {
     $(this).toggleClass('active_card_ingredient_style')
-  })
+  });
 
   // карточки с индридиентами
   function render(ingredients) {
@@ -245,12 +251,13 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
       cardIngr.classList.add('card_ingredient_style');
       cardIngr.innerHTML = `  
     <div class="product_icon_position">
-    <div class="ingredient_product_icon"; 
-      style="background: url(${ingredients[i].image});
-      background-repeat: no-repeat;
-      background-position: center; 
-      background-size:contain;
-      background-color: #fff;"></div>
+      <div class="ingredient_product_icon"; 
+          style="background: url(${ingredients[i].image});
+          background-repeat: no-repeat;
+          background-position: center; 
+          background-size:contain;
+          background-color: #fff;">
+      </div>
     </div>
     <div class="card_ingredient_title">${ingredients[i].name}</div>
     <div class="card_ingredient_price">Цена: ${ingredients[i].price} руб</div>`;
