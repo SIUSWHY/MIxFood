@@ -191,14 +191,15 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
   let allMenuType = [
     data.sizes,     //1шт
     data.breads,    //1шт
-    data.vegetables,//3шт
-    data.sauces,    //?шт
+    data.vegetables,//?шт
+    data.sauces,    //3шт
     data.fillings,  //?шт
   ]
 
   render(allMenuType[0]);
-  let i = 0;
 
+
+  let i = 0;
 
   const btnNextType = $('.button_next_style');
   btnNextType.on('click', function () {
@@ -229,18 +230,71 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
 
   });
 
-  let selectedIngedients = []
+  let commponentsProductPopUp = {
+    "size": '',
+    "bread": '',
+    "vegetable": [],
+    "sauce": [],
+    "filling": []
+  }
 
   $(document).on('click', '.card_ingredient_style', function () {
-    selectedIngedients = [] + $(this);
-    console.log(Object.values($(this)));
+    if (i < 2) {
 
+      commponentsProductPopUp.size = $(this).find(".card_ingredient_title").text();
+      commponentsProductPopUp.bread = $(this).find(".card_ingredient_title").text();
+      console.log(commponentsProductPopUp.size);
+      console.log(commponentsProductPopUp.bread);
+      $(".card_ingredient_style").removeClass('active_card_ingredient_style')
+      $(this).addClass('active_card_ingredient_style')
+
+    } else if (i = 2) {
+
+      commponentsProductPopUp.vegetable = $(this).find(".card_ingredient_title").text();
+      vegetable.push(commponentsProductPopUp.vegetable)
+      $(this).toggleClass('active_card_ingredient_style')
+      console.log(vegetable);
+
+    } else if (i = 3) {
+
+      let quantitySauce = 0;
+      $(document).on('click', '.card_ingredient_style', function () {
+        if (quantitySauce < 4) {
+          quantitySauce++
+          commponentsProductPopUp.sauce = $(this).find(".card_ingredient_title").text();
+          console.log(commponentsProductPopUp.sauce);
+          $(this).toggleClass('active_card_ingredient_style')
+        }
+      });
+
+    }
   });
 
 
-  $(document).on('click', '.card_ingredient_style', function () {
-    $(this).toggleClass('active_card_ingredient_style')
-  });
+
+  // });
+
+  // $(document).on('click', '.card_ingredient_style', function () {
+  //   commponentsProductPopUp.size = $(this).find(".card_ingredient_title").text();
+  //   commponentsProductPopUp.bread = $(this).find(".card_ingredient_title").text();
+  //   console.log(commponentsProductPopUp.size);
+
+  // });
+
+  // $(document).on('click', '.card_ingredient_style', function () {
+  //   $(".card_ingredient_style").removeClass('active_card_ingredient_style')
+  //   $(this).addClass('active_card_ingredient_style')
+  // });
+
+  // function() {
+  //   if (i > 1) {
+  //     $(document).on('click', '.card_ingredient_style', function () {
+  //       $(".card_ingredient_style").toggleClass('.active_card_ingredient_style');
+
+
+  //     });
+  //   }
+  // }
 
   // карточки с индридиентами
   function render(ingredients) {
