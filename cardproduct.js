@@ -239,18 +239,21 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
   }
 
   $(document).on('click', '.card_ingredient_style', function () {
-    if (i < 2) {
+    if (i === 0) {
 
       commponentsProductPopUp.size = $(this).find(".card_ingredient_title").text();
-      commponentsProductPopUp.bread = $(this).find(".card_ingredient_title").text();
-      console.log(commponentsProductPopUp.size);
       $(".card_ingredient_style").removeClass('active_card_ingredient_style')
       $(this).addClass('active_card_ingredient_style')
 
-    } else if (i = 2) {
+    } else if (i === 1) {
+
+      commponentsProductPopUp.bread = $(this).find(".card_ingredient_title").text();
+      $(".card_ingredient_style").removeClass('active_card_ingredient_style')
+      $(this).addClass('active_card_ingredient_style')
+
+    } else if (i === 2) {
 
       commponentsProductPopUp.vegetable.push($(this).find(".card_ingredient_title").text());
-      console.log(commponentsProductPopUp.vegetable);
       $(this).addClass('active_card_ingredient_style');
 
       $(document).on('click', '.card_ingredient_style', function () {
@@ -258,19 +261,16 @@ document.querySelector('.buy_basket_js').appendChild(buy_basket);
         commponentsProductPopUp.vegetable.splice(this, 1);
       });
 
-    } else if (i = 3) {
+    } else if (i === 3) {
 
-      let quantitySauce = 0;
       $(document).on('click', '.card_ingredient_style', function () {
-        if (quantitySauce < 3) {
-          quantitySauce++
-          commponentsProductPopUp.sauce.push($(this).find(".card_ingredient_title").text());
-          console.log(commponentsProductPopUp.sauce);
-          $(this).toggleClass('active_card_ingredient_style');
-        }
+        quantitySauce++
+        commponentsProductPopUp.sauce.push($(this).find(".card_ingredient_title").text());
+        $(this).toggleClass('active_card_ingredient_style');
       });
 
     }
+    console.log(commponentsProductPopUp);
   });
 
   // карточки с индридиентами
